@@ -83,7 +83,7 @@ client.on("message", (message) => {
             guildUser.removeRole(role)
             message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has left the Secret Event.`)
         } else if(message.content === prefix + "sync" && message.author.id == "188844101519540225") {
-            setTimeout(function(){ message.reply("Syncing with Github...") }, 500);
+            setTimeout(function(){ message.channel.send("Syncing with Github...") }, 500);
             setTimeout(function(){ process.exit(0); }, 3000);
         }
     }
