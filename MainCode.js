@@ -27,7 +27,7 @@ client.on("message", (message) => {
             let embed = new Discord.RichEmbed()
                 .setTitle("Commands")
                 .setColor("#f4d142")
-                .setDescription(`kek\n**${prefix}addsecret**: Adds Secret Event Participant to the mentioned person. (Requires Event Leader)\n**${prefix}removesecret**: Removes Secret Event Participant from the mentioned person. (Requires Event Leader)\n**${prefix}rules** Used for Event Leaders to change the rules, then normal people can just do ${prefix}rules to get the output.\n**${prefix}link** is the same as ${prefix}rules but for the link instead.\n**${prefix}closeevent:** Removes event participant from everyone and removes event leader from the leader.\n**${prefix}addleader/removeleader:** For staff to set the leader of a Secret Event, and removeleader takes away leader.`)
+                .setDescription(`**${prefix}addsecret**: Adds Secret Event Participant to the mentioned person. (Requires Event Leader)\n**${prefix}removesecret**: Removes Secret Event Participant from the mentioned person. (Requires Event Leader)\n**${prefix}rules** Used for Event Leaders to change the rules, then normal people can just do ${prefix}rules to get the output.\n**${prefix}link** is the same as ${prefix}rules but for the link instead.\n**${prefix}closeevent:** Removes event participant from everyone and removes event leader from the leader.\n**${prefix}addleader/removeleader:** For staff to set the leader of a Secret Event, and removeleader takes away leader.\n**${prefix}github:** Gives the link to my github, where you can PR new features.`)
             message.channel.sendEmbed(embed)
         } else if(message.member.roles.exists("name", "Event Leader") && message.content.startsWith(prefix + "addsecret ") && message.mentions.users.first()) {
             let role = message.guild.roles.find("name", "Secret Event Participant")
@@ -86,6 +86,8 @@ client.on("message", (message) => {
             setTimeout(function(){ message.channel.send("Syncing with Github...") }, 500);
             setTimeout(function(){ process.exit(0); );
     }); }, 3000);
+        } else if(message.content === prefix + "github") {
+            message.channel.sendMessage("If you Pull Request a new feature on Github, just ping gotkeyzjr#6283 to sync the bot with Github. The link is: https://github.com/gotkeyzjr/SecretEventBot")
         }
     }
 } catch(err) {
