@@ -18,13 +18,6 @@ client.on("guildCreate", (guild) => {
 
 client.on("message", (message) => {
   try {
-    if(message.content.startsWith(prefix)) return;
-    if(cd == true) {
-        message.reply("Don't spam my commands please :confused:")
-    }
-    if(cd == false){
-    cd = true
-    setTimeout(function(){ cd = false }, 1500);
     let servers = {"189913986312044544": "251897666881978375", "195278167181754369": "214580801461813249"}
     let eventchannel = {"189913986312044544": "189913986312044544", "195278167181754369": "252023797610315786"}
     var args = message.content.split(" ").slice(1).join(" ");
@@ -101,7 +94,6 @@ client.on("message", (message) => {
              }, 3000);
         }
     }
-  }
 } catch(err) {
     console.log("\x1b[31m", err, "\x1b[0m")
 }
