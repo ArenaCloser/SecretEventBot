@@ -84,7 +84,11 @@ client.on("message", (message) => {
             message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has left the Secret Event.`)
         } else if(message.content === prefix + "sync" && message.author.id == "188844101519540225") {
             setTimeout(function(){ message.channel.send("Syncing with Github...") }, 500);
-            setTimeout(function(){ process.exit(0); }, 3000);
+            setTimeout(function(){ const childProcess = require('child_process');
+ childProcess.exec("pm2 restart EventBot", { shell: '/bin/bash' }, (err, stdout) => {
+      if (err) return message.channel.send(err.message, { code: true });
+      message.channel.send(stdout, { code: true });
+    }); }, 3000);
         }
     }
 } catch(err) {
