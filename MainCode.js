@@ -85,7 +85,9 @@ client.on("message", (message) => {
         } else if(message.content === prefix + "github") {
             message.channel.sendMessage("If you Pull Request a new feature on Github, just ping gotkeyzjr#6283 to sync the bot with Github. The link is: https://github.com/gotkeyzjr/SecretEventBot")
         } else if (message.content === prefix + "sync" && message.author.id == "188844101519540225") {
-            message.reply("Syncing with Github...")
+              setTimeout(function () {
+                message.reply("Syncing with Github...")
+             }, 500);
              setTimeout(function () {
                 process.exit(0);
              }, 3000);
