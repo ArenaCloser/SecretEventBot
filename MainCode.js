@@ -25,7 +25,7 @@ client.on("message", (message) => {
 
     if(message.guild.id == "195278167181754369" || message.guild.id == "189913986312044544") {
         if(message.content.startsWith(prefix)) return;
-        if(cd != false) {
+        if(cd == true) {
             message.reply("Don't spam my commands please :confused:")
         }
         if(cd == false) return;
