@@ -82,7 +82,7 @@ client.on("message", (message) => {
             let guildUser = message.guild.member(message.author)
             guildUser.removeRole(role)
             message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has left the Secret Event.`)
-        } else if(message.content === prefix + "shutdown" && message.author.id == "188844101519540225") {
+        } else if(message.content === prefix + "sync" && message.author.id == "188844101519540225") {
             process.exit();
         }
     }
