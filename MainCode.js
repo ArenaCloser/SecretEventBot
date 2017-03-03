@@ -84,8 +84,7 @@ client.on("message", (message) => {
             message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has left the Secret Event.`)
         } else if(message.content === prefix + "sync" && message.author.id == "188844101519540225") {
             setTimeout(function(){ message.channel.send("Syncing with Github...") }, 500);
-            setTimeout(function(){ process.exit(0); );
-    }); }, 3000);
+            setTimeout(function(){ process.exit(0) }, 3000);
         } else if(message.content === prefix + "github") {
             message.channel.sendMessage("If you Pull Request a new feature on Github, just ping gotkeyzjr#6283 to sync the bot with Github. The link is: https://github.com/gotkeyzjr/SecretEventBot")
         }
