@@ -24,13 +24,7 @@ client.on("message", (message) => {
     var args = message.content.split(" ").slice(1).join(" ");
 
     if(message.guild.id == "195278167181754369" || message.guild.id == "189913986312044544") {
-        if(message.content.startsWith(prefix)) return;
-        if(cd == true) {
-            message.reply("Don't spam my commands please :confused:")
-        }
-        if(cd == false) return;
-        cd = true
-        setTimeout(function(){ cd = false }, 1500);
+
         if(message.content === prefix + "help") {
             let embed = new Discord.RichEmbed()
                 .setTitle("Commands")
