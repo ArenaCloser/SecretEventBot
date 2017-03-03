@@ -82,25 +82,8 @@ client.on("message", (message) => {
             let guildUser = message.guild.member(message.author)
             guildUser.removeRole(role)
             message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has left the Secret Event.`)
-        } else if((message.member.roles.exists("name", "Admins") || message.member.user.id == "188844101519540225") && message.content.startsWith(prefix + "eventban ") && message.mentions.users.first()) {
-            let member = message.guild.member(message.mentions.users.first())
-            let channel = message.guild.channels.get(eventchannel[message.guild.id])
-            if(message.guild.roles.exists("name", "EventBanned")) {
-                let role = message.member.roles.find("name", "EventBanned")
-                member.addRole(role)
-                channel.overwritePermissions(role,{READ_MESSAGES:false});
-            } else {
-                message.guild.createRole({ name: "EventBanned" })
-                    .then(role => {
-                        member.addRole(role)
-                        channel.overwritePermissions(role,{READ_MESSAGES:false});
-                    });
-            }
-        } else if((message.member.roles.exists("name", "Admins") || message.member.user.id == "188844101519540225") && message.content.startsWith(prefix + "eventunban ") && message.mentions.users.first()) {
-            let member = message.guild.member(message.mentions.users.first())
-                let role = message.member.roles.find("name", "EventBanned")
-                member.removeRole(role)
-            
+        } else if(message.content === prefix + "shutdown" && message.author.id == "188844101519540225") {
+            process.exit();
         }
     }
 } catch(err) {
