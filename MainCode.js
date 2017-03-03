@@ -1,6 +1,7 @@
 let prefix = "--"
 let link = ""
 let rules = ""
+let cd = false
 console.log("\x1b[34m", "Starting SecretEventBot...", "\x1b[0m")
 
 client.on("ready", () => {
@@ -23,6 +24,13 @@ client.on("message", (message) => {
     var args = message.content.split(" ").slice(1).join(" ");
 
     if(message.guild.id == "195278167181754369" || message.guild.id == "189913986312044544") {
+        if(message.content.startsWith(prefix)) return;
+        if(cd != false) {
+            message.reply("Don't spam my commands please :confused:")
+        }
+        if(cd == false) return;
+        cd = true
+        setTimeout(function(){ cd = false }, 1500);
         if(message.content === prefix + "help") {
             let embed = new Discord.RichEmbed()
                 .setTitle("Commands")
