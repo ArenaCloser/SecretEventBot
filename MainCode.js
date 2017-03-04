@@ -35,13 +35,13 @@ client.on("message", (message) => {
             let guildUser = message.guild.member(message.mentions.users.first())
             guildUser.addRole(role)
             message.reply("Added Secret Event Participant to " + guildUser + "!")
-            message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has added **${guildUser.user.username}** to the Secret Event.`)
+            message.guild.channels.get(servers[message.guild.id]).sendEmbed(getEmbed(Discord, "Secret Event", `**${message.author.username}** has added **${guildUser.user.username}** to the Secret Event.`))
         } else if(message.member.roles.exists("name", "Event Leader") && message.content.startsWith(prefix + "removesecret ") && message.mentions.users.first()) {
             let role = message.guild.roles.find("name", "Secret Event Participant")
             let guildUser = message.guild.member(message.mentions.users.first())
             guildUser.removeRole(role)
             message.reply("Removed Secret Event Participant from " + guildUser + "!")
-            message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has removed **${guildUser.user.username}** from the Secret Event.`)
+            message.guild.channels.get(servers[message.guild.id]).sendEmbed(getEmbed(Discord, "Secret Event", `**${message.author.username}** has removed **${guildUser.user.username}** from the Secret Event.`))
         } else if(message.member.roles.exists("name", "Event Leader") && message.content.startsWith(prefix + "link ")) {
             link = message.content.split(" ").slice(1).join(" ");
             message.reply("Link set!")
@@ -65,24 +65,24 @@ client.on("message", (message) => {
                 }
             });
             message.reply("Closed Event.")
-            message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has closed the event.`)
+            message.guild.channels.get(servers[message.guild.id]).sendEmbed(getEmbed(Discord, "Secret Event", `**${message.author.username}** has closed the event.`))
         } else if(message.member.roles.exists("name", "Bot Commander") && message.content.startsWith(prefix + "addleader ") && message.mentions.users.first()) {
             let role = message.guild.roles.find("name", "Event Leader")
             let guildUser = message.guild.member(message.mentions.users.first())
             guildUser.addRole(role)
             message.reply("Added Event Leader to " + guildUser + "!")
-            message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has added **Event Leader** to **${guildUser.user.username}**.`)
+            message.guild.channels.get(servers[message.guild.id]).sendEmbed(getEmbed(Discord, "Secret Event", `**${message.author.username}** has added **Event Leader** to **${guildUser.user.username}**.`))
         } else if(message.member.roles.exists("name", "Bot Commander") && message.content.startsWith(prefix + "removeleader ") && message.mentions.users.first()) {
             let role = message.guild.roles.find("name", "Event Leader")
             let guildUser = message.guild.member(message.mentions.users.first())
             guildUser.removeRole(role)
             message.reply("Removed Event Leader from " + guildUser + "!")
-            message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has removed **Event Leader** from **${guildUser.user.username}**.`)
+            message.guild.channels.get(servers[message.guild.id]).sendEmbed(getEmbed(Discord, "Secret Event", `**${message.author.username}** has removed **Event Leader** from **${guildUser.user.username}**.`))
         } else if(message.member.roles.exists("name", "Secret Event Participant") && message.content === (prefix + "leave")) {
             let role = message.guild.roles.find("name", "Secret Event Participant")
             let guildUser = message.guild.member(message.author)
-            guildUser.removeRole(role)
-            message.guild.channels.get(servers[message.guild.id]).sendMessage(`**${message.author.username}** has left the Secret Event.`)
+            guildUser.removeRole(role) 
+            message.guild.channels.get(servers[message.guild.id]).sendEmbed(getEmbed(Discord, "Secret Event", `**${message.author.username}** has left the Secret Event.`))
         } else if(message.content === prefix + "github") {
             message.channel.sendMessage("If you Pull Request a new feature on Github, just ping gotkeyzjr#6283 to sync the bot with Github. The link is: https://github.com/gotkeyzjr/SecretEventBot")
         } else if (message.content === prefix + "sync" && message.author.id == "188844101519540225") {
@@ -98,4 +98,11 @@ client.on("message", (message) => {
     console.log("\x1b[31m", err, "\x1b[0m")
 }
 
+function getEmbed(Discord, title, desc) {
+    let embed = new Discord.RichEmbed()
+        .setTitle(title)
+        .setDescription(desc)
+    return embed;
+}
+    
 });
