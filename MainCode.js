@@ -102,6 +102,7 @@ function getEmbed(Discord, title, desc) {
     let embed = new Discord.RichEmbed()
         .setTitle(title)
         .setDescription(desc)
+        .setColor("#f4d142")
     return embed;
 }
     
